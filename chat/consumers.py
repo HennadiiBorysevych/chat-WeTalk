@@ -70,8 +70,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         new_message = Message.objects.create(body=message, sent_by=sent_by)
         
         if agent:
-            message.created_by = User.object.get(pk=agent)
-            message.save()
+            new_message.created_by = User.objects.get(pk=agent)
+            new_message.save()
         
         self.room.messages.add(new_message)
         return new_message

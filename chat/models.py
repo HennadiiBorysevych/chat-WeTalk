@@ -34,7 +34,6 @@ class Room(models.Model):
     url = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=20, choices=CHOICES_STATUS, default=WAITING)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('-created_at',)

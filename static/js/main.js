@@ -36,8 +36,6 @@ function getCookie(name) {
 }
 
 function onChatMessage(data) {
-    const messageElement = document.createElement('div')
-
     if (data.type === 'chat_message') {
         if (data.agent){
             chatLogElement.innerHTML += `
@@ -150,8 +148,5 @@ chatJoinElement.addEventListener('click', (e) => {
 
 chatSubmitElement.addEventListener('click', (e) => {
     e.preventDefault()
-
-    const message = chatInputElement.value
-
    sendMessage()
 })
