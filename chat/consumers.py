@@ -63,7 +63,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     
     @sync_to_async
     def get_room(self):
-        self.room = Room.objects.get(uuis=self.room_name)
+        self.room = Room.objects.get(uuid=self.room_name)
 
     @sync_to_async
     def create_message(self, sent_by, message, agent):
