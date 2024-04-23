@@ -86,3 +86,9 @@ chatSubmitElement.addEventListener('click', (e) => {
     e.preventDefault()
     sendMessage()
 })
+
+chatIconElement.onkeyup = function(e) {
+    if (e.keyCode === 13) {
+        sendMessage()
+    }
+} 

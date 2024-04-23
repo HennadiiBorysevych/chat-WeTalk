@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
+from account.forms import AddUserForm
+
 from .models import Room
 from django.shortcuts import render
 from account.models import User
@@ -35,3 +37,10 @@ def room(request, uuid):
         room.save()
 
     return render(request, 'chat/room.html', {'room': room})
+
+@login_required
+def add_user(request):
+    
+    form = AddUserForm()
+
+    return render(request, 'chat/add_user.html', {'form': form})
