@@ -12,7 +12,7 @@
 
             <a href="{% url 'chat:room' room.uuid %}" class="mt-4 inline-block py-2 px-6 bg-emerald-800 text-white rounded-xl">Join</a>
 
-            {% comment %} <a href="{% url 'chat:delete_room' room.uuid %}" class="mt-4 inline-block py-2 px-6 bg-rose-800 text-white rounded-xl">Delete</a> {% endcomment %}
+            <a href="{% url 'chat:delete_room' room.uuid %}" class="mt-4 inline-block py-2 px-6 bg-rose-800 text-white rounded-xl">Delete</a>
         </div>
     {% endfor %}
 </div>

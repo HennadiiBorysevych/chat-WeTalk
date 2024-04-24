@@ -13,7 +13,7 @@
                 {% for user in users %}
                     <div class="grid grid-cols-4 gap-4 py-2 {% cycle 'bg-gray-100' '' %}">
                         <p class="px-2">
-                            <a href="#">{{ user.name }}</a>
+                            <a href="{% url 'chat:user_detail' user.pk %}">{{ user.name }}</a>
                         </p>
 
                         <p class="px-2">{{ user.email }}</p>
@@ -22,7 +22,7 @@
 
                         <p class="px-2 text-right">
                             {% if perms.user.edit_user %}
-                                <a href="#" class="underline">Edit</a>
+                                <a href="{% url 'chat:edit_user' user.pk %}" class="underline">Edit</a>
                             {% endif %}
                         </p>
                     </div>
