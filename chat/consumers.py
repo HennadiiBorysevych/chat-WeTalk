@@ -57,6 +57,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'initials': initials(name),
                     'created_at': timesince(new_message.created_at),
                 })
+        elif type == 'update':
+            await self.channel_layer.group_send(
+                self.room_group_name, {
+                    "type": "writing_active",
+                    "message": message,
+                    "name": name,
+                    "agent": agent,
+                    'initials': initials(name),
+                })
             
     async def chat_message(self, event):
         message = event["message"]
@@ -72,10 +81,26 @@ class ChatConsumer(AsyncWebsocketConsumer):
             "message": message,
             "name": name,
             "agent": agent,
-            "initials": initials,
+            "initials": initials, 
             "created_at": created_at,
         }))
     
+    async def writing_active(self, event):
+        message = event["message"]
+        name = event["name"]
+        agent = event["agent"]
+        initials = event["initials"]
+        type = event["type"]
+
+        # Send message to WebSocket
+        await self.send(text_data=json.dumps({
+            "type": type,
+            "message": message,
+            "name": name,
+            "agent": agent,
+            "initials": initials,
+        }))
+
     async def users_update(self, event):
         message = event["message"]
         name = event["name"]
